@@ -6,10 +6,21 @@ import { useState, useEffect } from "react";
 import React from "react";
 import SignUp from "./pages/SignUp";
 
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Modal from "./components/Modal";
+
 const App = () => {
   const [status, setStatus] = useState(false);
-  useEffect(() => {}, []);
-  return <div>{status ? <Home /> : <Login setStatus={setStatus} />}</div>;
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<Login setStatus={setStatus} />} />
+        <Route path="/home" element={<Home status={status} />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
